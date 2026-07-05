@@ -1,19 +1,34 @@
-// colors
-$color-bg: #0d1117;
-$color-text: #e6edf3;
-$color-border: #30363d;
+$color-bg: #1e1e2e;
+$color-surface: #313244;
+$color-surface2: #45475a;
+$color-text: #cdd6f4;
+$color-text-secondary: #bac2de;
+$color-border: #45475a;
+
+$color-overlay: #6c7086;
 
 // rarity tiers
-$rarity-common: #8b949e;
-$rarity-rare: #58a6ff;
-$rarity-epic: #a371f7;
-$rarity-legendary: #f0883e;
-
-// spacing
-$spacing-sm: 0.5rem;
-$spacing-md: 1rem;
-$spacing-lg: 2rem;
+$rarity-common: #a6adc8;
+$rarity-rare: #89b4fa;
+$rarity-epic: #cba6f7;
+$rarity-legendary: #fab387;
 
 // breakpoints
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1200px;
+
+// collection
+$color-binder-outer: #181825;
+$color-binder-inner: #313244;
+$color-binder-page: #313244;
+$color-binder-page-border: #45475a;
+$color-quantity: #f38ba8;
+
+// additional catppuccin colors
+$color-red: #f38ba8;
+$color-green: #a6e3a1;
+$color-yellow: #f9e2af;
+$color-mauve: #cba6f7;
+$color-peach: #fab387;
+$color-sky: #89dceb;
+$color-lavender: #b4befe;

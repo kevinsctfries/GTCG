@@ -1,0 +1,85 @@
+@use "@/styles/variables" as *;
+
+.collectionContainer {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+
+    .binderHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+
+        h1 {
+            font-size: 2.2rem;
+            margin: 0;
+            color: $color-text;
+        }
+
+        .pageInfo {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            color: $color-text-secondary;
+        }
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 32px;
+        padding: 1rem 0;
+        justify-items: center;
+    }
+
+    .cardSlot {
+        position: relative;
+        transition: transform 0.2s ease;
+
+        .quantity {
+            position: absolute;
+            bottom: -8px;
+            right: -8px;
+            background: $color-quantity;
+            color: $color-bg;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 4px 10px;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            border: 2px solid $color-surface;
+
+            -webkit-user-select: none;
+            user-select: none;
+        }
+    }
+
+    .cardSlot:nth-child(3n):hover {
+        transform: scale(1.06) rotate(1deg);
+    }
+
+    .cardSlot:nth-child(3n + 1):hover {
+        transform: scale(1.06) rotate(-1deg);
+    }
+
+    .cardSlot:nth-child(3n + 2):hover {
+        transform: scale(1.06) rotate(0.5deg);
+    }
+
+    .empty {
+        grid-column: 1 / -1;
+        text-align: center;
+        font-size: 1.4rem;
+        opacity: 0.7;
+        padding: 60px 20px;
+        color: $color-text-secondary;
+    }
+
+    .loading {
+        text-align: center;
+        font-size: 1.3rem;
+        padding: 60px;
+        color: $color-text;
+    }
+}
