@@ -5,7 +5,7 @@ import type { Card } from "@/types/card";
 export type UserCardEntry = {
   id: string;
   userId: string;
-  cardId: string;
+  cardId: number;
   quantity: number;
   createdAt: Date;
   updatedAt: Date;
@@ -13,7 +13,7 @@ export type UserCardEntry = {
 
 export async function addCardsToCollection(
   userId: string,
-  cards: { cardId: string; isHolo: boolean }[],
+  cards: { cardId: number; isHolo: boolean }[],
 ) {
   const operations = cards.map(({ cardId, isHolo }) =>
     prisma.userCard.upsert({

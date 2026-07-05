@@ -16,7 +16,7 @@ datasource db {
 model UserCard {
   id        String   @id @default(cuid())
   userId    String
-  cardId    String
+  cardId    Int
   quantity  Int      @default(1)
   isHolo    Boolean  @default(false)
 

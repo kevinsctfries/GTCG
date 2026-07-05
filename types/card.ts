@@ -1,7 +1,7 @@
 export type CardRarity = "Common" | "Uncommon" | "Rare" | "Epic" | "Legendary";
 
 export type Card = {
-  id: string;
+  id: number;
   name: string;
   category: string;
   rarity: CardRarity;

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 export type CollectionEntry = {
   id: string;
   userId: string;
-  cardId: string;
+  cardId: number;
   quantity: number;
   isHolo: boolean;
 };

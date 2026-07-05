@@ -2,7 +2,7 @@ import { Card } from "@/types/card";
 
 export const cards: Card[] = [
   {
-    id: "typescript",
+    id: 1,
     name: "TypeScript",
     category: "Code",
     rarity: "Epic",
@@ -10,7 +10,7 @@ export const cards: Card[] = [
       "JavaScript with static typing. Prevents entire classes of runtime errors.",
   },
   {
-    id: "javascript",
+    id: 2,
     name: "JavaScript",
     category: "Code",
     rarity: "Common",
@@ -18,7 +18,7 @@ export const cards: Card[] = [
       "The universal language of the web. Runs everywhere, sometimes predictably.",
   },
   {
-    id: "react",
+    id: 3,
     name: "React",
     category: "Code",
     rarity: "Rare",
@@ -26,7 +26,7 @@ export const cards: Card[] = [
       "Component-based UI library for building interactive interfaces.",
   },
   {
-    id: "nextjs",
+    id: 4,
     name: "Next.js",
     category: "Code",
     rarity: "Rare",
@@ -34,7 +34,7 @@ export const cards: Card[] = [
       "Full-stack React framework with server-side rendering and routing.",
   },
   {
-    id: "postgres",
+    id: 5,
     name: "PostgreSQL",
     category: "Software",
     rarity: "Epic",
@@ -42,7 +42,7 @@ export const cards: Card[] = [
       "Powerful relational database known for reliability and advanced features.",
   },
   {
-    id: "redis",
+    id: 6,
     name: "Redis",
     category: "Software",
     rarity: "Rare",
@@ -50,7 +50,7 @@ export const cards: Card[] = [
       "In-memory data store used for caching, queues, and real-time systems.",
   },
   {
-    id: "docker",
+    id: 7,
     name: "Docker",
     category: "Software",
     rarity: "Uncommon",
@@ -58,7 +58,7 @@ export const cards: Card[] = [
       "Containerization platform for packaging applications and dependencies.",
   },
   {
-    id: "git",
+    id: 8,
     name: "Git",
     category: "Code",
     rarity: "Common",
@@ -66,7 +66,7 @@ export const cards: Card[] = [
       "Distributed version control system powering modern software collaboration.",
   },
   {
-    id: "cloudflare",
+    id: 9,
     name: "Cloudflare",
     category: "Network",
     rarity: "Rare",
@@ -74,7 +74,7 @@ export const cards: Card[] = [
       "Global edge network providing CDN, security, and performance services.",
   },
   {
-    id: "linux",
+    id: 10,
     name: "Linux",
     category: "Software",
     rarity: "Epic",
