@@ -29,24 +29,26 @@ export default function Collection({ userId }: Props) {
         <div className={styles.pageInfo}>{enriched.length} cards total</div>
       </div>
 
-      <div className={styles.grid}>
-        {enriched.length > 0 ? (
-          enriched.map(item => (
-            <div key={item.id} className={styles.cardSlot}>
-              <Card
-                item={{
-                  instanceId: item.id,
-                  card: item.card,
-                }}
-              />
-              {item.quantity > 1 && (
-                <div className={styles.quantity}>x{item.quantity}</div>
-              )}
-            </div>
-          ))
-        ) : (
-          <div className={styles.empty}>No cards in collection yet.</div>
-        )}
+      <div className={styles.scrollArea}>
+        <div className={styles.grid}>
+          {enriched.length > 0 ? (
+            enriched.map(item => (
+              <div key={item.id} className={styles.cardSlot}>
+                <Card
+                  item={{
+                    instanceId: item.id,
+                    card: item.card,
+                  }}
+                />
+                {item.quantity > 1 && (
+                  <div className={styles.quantity}>x{item.quantity}</div>
+                )}
+              </div>
+            ))
+          ) : (
+            <div className={styles.empty}>No cards in collection yet.</div>
+          )}
+        </div>
       </div>
     </div>
   );
