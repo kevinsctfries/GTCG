@@ -14,6 +14,7 @@ export default function Collection({ userId }: Props) {
   const { data, loading } = useCollection(userId);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedRarity, setSelectedRarity] = useState<string>("All");
+  const [selectedFoil, setSelectedFoil] = useState("All");
 
   // enrich DB entries with card metadata
   const enriched = data
@@ -33,9 +34,14 @@ export default function Collection({ userId }: Props) {
       const matchesRarity =
         selectedRarity === "All" || item.card.rarity === selectedRarity;
 
-      return matchesSearch && matchesRarity;
+      const matchesFoil =
+        selectedFoil === "All" ||
+        (selectedFoil === "Holo" && item.isHolo) ||
+        (selectedFoil === "Normal" && !item.isHolo);
+
+      return matchesSearch && matchesRarity && matchesFoil;
     });
-  }, [enriched, searchTerm, selectedRarity]);
+  }, [enriched, searchTerm, selectedRarity, selectedFoil]);
 
   const sortedCards = useMemo(() => {
     return filteredCards.slice().sort((a, b) => {
@@ -75,6 +81,15 @@ export default function Collection({ userId }: Props) {
           <option value="Rare">Rare</option>
           <option value="Epic">Epic</option>
           <option value="Legendary">Legendary</option>
+        </select>
+
+        <select
+          value={selectedFoil}
+          onChange={e => setSelectedFoil(e.target.value)}
+          className={styles.filterSelect}>
+          <option value="All">All Cards</option>
+          <option value="Normal">Normal</option>
+          <option value="Holo">Holo</option>
         </select>
       </div>
 
