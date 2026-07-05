@@ -4,45 +4,16 @@
     width: 220px;
     height: 308px;
 
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.3s;
-    cursor: pointer;
+    display: flex;
+    flex-direction: column;
 
-    &.flipped {
-        transform: rotateY(180deg);
-    }
+    border: 1px solid $color-border;
+    border-radius: 0.5rem;
 
-    .face {
-        position: absolute;
-        inset: 0;
+    padding: 12px;
+    overflow: hidden;
 
-        display: flex;
-        flex-direction: column;
-
-        backface-visibility: hidden;
-
-        border: 1px solid $color-border;
-        border-radius: 0.5rem;
-
-        padding: 12px;
-    }
-
-    .back {
-        background: #111;
-        color: white;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        font-weight: bold;
-    }
-
-    .front {
-        transform: rotateY(180deg);
-        background: #0d1117;
-    }
+    background: #0d1117;
 
     .name {
         font-weight: 700;
@@ -61,7 +32,6 @@
         font-size: 12px;
         opacity: 0.9;
         line-height: 1.3;
-
         margin-top: auto;
     }
 }
