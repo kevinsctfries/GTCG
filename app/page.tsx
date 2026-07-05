@@ -17,7 +17,7 @@ export default function Home() {
 
       <OpenPackModal open={open} onClose={() => setOpen(false)} />
 
-      <div style={{ marginTop: 32 }}>
+      <div>
         <Collection userId={userId} />
       </div>
     </div>
