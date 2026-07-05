@@ -15,6 +15,10 @@ export default function Collection({ userId }: Props) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedRarity, setSelectedRarity] = useState<string>("All");
   const [selectedFoil, setSelectedFoil] = useState("All");
+  const [sortMode, setSortMode] = useState<
+    "id" | "alpha" | "alphaDesc" | "qtyAsc" | "qtyDesc"
+  >("id");
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
   // enrich DB entries with card metadata
   const enriched = data
@@ -39,19 +43,46 @@ export default function Collection({ userId }: Props) {
         (selectedFoil === "Holo" && item.isHolo) ||
         (selectedFoil === "Normal" && !item.isHolo);
 
-      return matchesSearch && matchesRarity && matchesFoil;
+      const matchesCategory =
+        selectedCategory === "All" || item.card.category === selectedCategory;
+
+      return matchesSearch && matchesRarity && matchesFoil && matchesCategory;
     });
-  }, [enriched, searchTerm, selectedRarity, selectedFoil]);
+  }, [enriched, searchTerm, selectedRarity, selectedFoil, selectedCategory]);
 
   const sortedCards = useMemo(() => {
-    return filteredCards.slice().sort((a, b) => {
-      if (a.cardId < b.cardId) return -1;
-      if (a.cardId > b.cardId) return 1;
+    const sorted = filteredCards.slice();
 
-      if (a.isHolo === b.isHolo) return 0;
-      return a.isHolo ? 1 : -1;
-    });
-  }, [filteredCards]);
+    switch (sortMode) {
+      case "alpha":
+        sorted.sort((a, b) => a.card.name.localeCompare(b.card.name));
+        break;
+
+      case "alphaDesc":
+        sorted.sort((a, b) => b.card.name.localeCompare(a.card.name));
+        break;
+
+      case "qtyAsc":
+        sorted.sort((a, b) => a.quantity - b.quantity);
+        break;
+
+      case "qtyDesc":
+        sorted.sort((a, b) => b.quantity - a.quantity);
+        break;
+
+      default:
+        sorted.sort((a, b) => {
+          if (a.cardId < b.cardId) return -1;
+          if (a.cardId > b.cardId) return 1;
+
+          if (a.isHolo === b.isHolo) return 0;
+          return a.isHolo ? 1 : -1;
+        });
+        break;
+    }
+
+    return sorted;
+  }, [filteredCards, sortMode]);
 
   if (loading)
     return <div className={styles.loading}>Loading your collection...</div>;
@@ -90,6 +121,29 @@ export default function Collection({ userId }: Props) {
           <option value="All">All Cards</option>
           <option value="Normal">Normal</option>
           <option value="Holo">Holo</option>
+        </select>
+
+        <select
+          value={sortMode}
+          onChange={e => setSortMode(e.target.value as typeof sortMode)}
+          className={styles.filterSelect}>
+          <option value="id">Sort by ID</option>
+          <option value="alpha">Sort A–Z</option>
+          <option value="alphaDesc">Sort Z–A</option>
+          <option value="qtyAsc">Quantity Asc</option>
+          <option value="qtyDesc">Quantity Desc</option>
+        </select>
+
+        <select
+          value={selectedCategory}
+          onChange={e => setSelectedCategory(e.target.value)}
+          className={styles.filterSelect}>
+          <option value="All">All Categories</option>
+          <option value="Core">Core</option>
+          <option value="Hardware">Hardware</option>
+          <option value="Software">Software</option>
+          <option value="Network">Network</option>
+          <option value="Code">Code</option>
         </select>
       </div>
 
