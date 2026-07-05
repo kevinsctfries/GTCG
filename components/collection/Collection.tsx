@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Card from "@/components/cards/Card";
 import { cards } from "@/data/cards";
 import { useCollection } from "@/lib/queries/useCollection";
@@ -12,7 +11,6 @@ type Props = {
 
 export default function Collection({ userId }: Props) {
   const { data, loading } = useCollection(userId);
-  const [currentPage, setCurrentPage] = useState(0);
 
   const enriched = data
     .map(entry => {
@@ -20,14 +18,6 @@ export default function Collection({ userId }: Props) {
       return card ? { ...entry, card } : null;
     })
     .filter((entry): entry is NonNullable<typeof entry> => entry !== null);
-
-  const cardsPerPage = 9;
-  const totalPages = Math.ceil(enriched.length / cardsPerPage);
-
-  const currentCards = enriched.slice(
-    currentPage * cardsPerPage,
-    (currentPage + 1) * cardsPerPage,
-  );
 
   if (loading)
     return <div className={styles.loading}>Loading your collection...</div>;
@@ -50,7 +40,7 @@ export default function Collection({ userId }: Props) {
                 }}
               />
               {item.quantity > 1 && (
-                <div className={styles.quantity}>×{item.quantity}</div>
+                <div className={styles.quantity}>x{item.quantity}</div>
               )}
             </div>
           ))
