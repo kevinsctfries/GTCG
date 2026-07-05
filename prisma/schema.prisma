@@ -14,13 +14,14 @@ datasource db {
 }
 
 model UserCard {
-  id        String @id @default(cuid())
+  id        String   @id @default(cuid())
   userId    String
   cardId    String
-  quantity  Int @default(1)
+  quantity  Int      @default(1)
+  isHolo    Boolean  @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([userId, cardId])
+  @@unique([userId, cardId, isHolo])
 }

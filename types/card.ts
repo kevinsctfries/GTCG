@@ -1,18 +1,16 @@
-export type CardCategory =
-  | "Language"
-  | "Framework"
-  | "Tool"
-  | "Database"
-  | "Cloud"
-  | "Operating System";
-
 export type CardRarity = "Common" | "Uncommon" | "Rare" | "Epic" | "Legendary";
 
-export interface Card {
+export type Card = {
   id: string;
   name: string;
-  category: CardCategory;
+  category: string;
   rarity: CardRarity;
   description: string;
-  //   artwork: string;
-}
+};
+
+export type PackCard = {
+  instanceId: string;
+  card: Card;
+  quantity?: number;
+  isHolo: boolean;
+};

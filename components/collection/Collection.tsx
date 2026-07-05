@@ -15,6 +15,7 @@ export default function Collection({ userId }: Props) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedRarity, setSelectedRarity] = useState<string>("All");
 
+  // enrich DB entries with card metadata
   const enriched = data
     .map(entry => {
       const card = cards.find(c => c.id === entry.cardId);
@@ -22,6 +23,7 @@ export default function Collection({ userId }: Props) {
     })
     .filter((entry): entry is NonNullable<typeof entry> => entry !== null);
 
+  // apply search / filters
   const filteredCards = useMemo(() => {
     return enriched.filter(item => {
       const matchesSearch = item.card.name
@@ -35,6 +37,16 @@ export default function Collection({ userId }: Props) {
     });
   }, [enriched, searchTerm, selectedRarity]);
 
+  const sortedCards = useMemo(() => {
+    return filteredCards.slice().sort((a, b) => {
+      if (a.cardId < b.cardId) return -1;
+      if (a.cardId > b.cardId) return 1;
+
+      if (a.isHolo === b.isHolo) return 0;
+      return a.isHolo ? 1 : -1;
+    });
+  }, [filteredCards]);
+
   if (loading)
     return <div className={styles.loading}>Loading your collection...</div>;
 
@@ -42,7 +54,7 @@ export default function Collection({ userId }: Props) {
     <div className={styles.collectionContainer}>
       <div className={styles.binderHeader}>
         <h1>Your Collection</h1>
-        <div className={styles.pageInfo}>{filteredCards.length} cards</div>
+        <div className={styles.pageInfo}>{sortedCards.length} cards</div>
       </div>
 
       <div className={styles.filters}>
@@ -68,13 +80,14 @@ export default function Collection({ userId }: Props) {
 
       <div className={styles.scrollArea}>
         <div className={styles.grid}>
-          {filteredCards.length > 0 ? (
-            filteredCards.map(item => (
+          {sortedCards.length > 0 ? (
+            sortedCards.map(item => (
               <div key={item.id} className={styles.cardSlot}>
                 <Card
                   item={{
                     instanceId: item.id,
                     card: item.card,
+                    isHolo: item.isHolo,
                   }}
                 />
                 {item.quantity > 1 && (

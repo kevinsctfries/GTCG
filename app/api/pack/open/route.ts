@@ -9,7 +9,10 @@ export async function POST() {
 
   await addCardsToCollection(
     userId,
-    pack.map(p => p.card.id),
+    pack.map(p => ({
+      cardId: p.card.id,
+      isHolo: p.isHolo,
+    })),
   );
 
   return NextResponse.json({

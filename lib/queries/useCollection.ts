@@ -7,6 +7,7 @@ export type CollectionEntry = {
   userId: string;
   cardId: string;
   quantity: number;
+  isHolo: boolean;
 };
 
 export function useCollection(userId: string) {

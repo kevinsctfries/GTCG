@@ -6,6 +6,7 @@ export type PackCard = {
   instanceId: string;
   card: Card;
   quantity?: number;
+  isHolo: boolean;
 };
 
 const RARITY_WEIGHTS: Record<CardRarity, number> = {
@@ -51,9 +52,12 @@ export function generatePack(packId: string): PackCard[] {
     const rarity = rollRarity();
     const card = getRandomCardByRarity(rarity);
 
+    const isHolo = Math.random() < 0.5;
+
     pack.push({
       instanceId: crypto.randomUUID(),
       card,
+      isHolo,
     });
   }
 

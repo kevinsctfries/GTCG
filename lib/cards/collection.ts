@@ -11,13 +11,17 @@ export type UserCardEntry = {
   updatedAt: Date;
 };
 
-export async function addCardsToCollection(userId: string, cardIds: string[]) {
-  const operations = cardIds.map(cardId =>
+export async function addCardsToCollection(
+  userId: string,
+  cards: { cardId: string; isHolo: boolean }[],
+) {
+  const operations = cards.map(({ cardId, isHolo }) =>
     prisma.userCard.upsert({
       where: {
-        userId_cardId: {
+        userId_cardId_isHolo: {
           userId,
           cardId,
+          isHolo,
         },
       },
       update: {
@@ -26,6 +30,7 @@ export async function addCardsToCollection(userId: string, cardIds: string[]) {
       create: {
         userId,
         cardId,
+        isHolo,
         quantity: 1,
       },
     }),

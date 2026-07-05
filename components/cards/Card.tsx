@@ -8,8 +8,10 @@ type Props = {
 };
 
 export default function Card({ item }: Props) {
+  const className = item.isHolo ? `${styles.card} ${styles.holo}` : styles.card;
+
   return (
-    <div className={styles.card}>
+    <div className={className}>
       <div className={styles.name}>{item.card.name}</div>
 
       <div className={styles.meta}>
