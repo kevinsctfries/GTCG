@@ -18,12 +18,16 @@ export default function Card({ item }: Props) {
     <div className={className}>
       <div className={styles.name}>{item.card.name}</div>
 
+      <div className={styles.imagePlaceholder}></div>
+
       <div className={styles.meta}>
         <span>{item.card.rarity}</span>
         <span>{item.card.category}</span>
       </div>
 
       <div className={styles.description}>{item.card.description}</div>
+
+      <div className={styles.cardId}>#{item.card.id}</div>
     </div>
   );
 }
