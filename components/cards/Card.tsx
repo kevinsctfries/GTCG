@@ -8,7 +8,11 @@ type Props = {
 };
 
 export default function Card({ item }: Props) {
-  const className = item.isHolo ? `${styles.card} ${styles.holo}` : styles.card;
+  const base = styles.card;
+  const holo = item.isHolo ? styles.holo : "";
+  const category = styles[item.card.category.toLowerCase()];
+
+  const className = `${base} ${holo} ${category}`;
 
   return (
     <div className={className}>

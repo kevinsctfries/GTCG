@@ -4,7 +4,7 @@ export const cards: Card[] = [
   {
     id: "typescript",
     name: "TypeScript",
-    category: "Language",
+    category: "Code",
     rarity: "Epic",
     description:
       "JavaScript with static typing. Prevents entire classes of runtime errors.",
@@ -12,7 +12,7 @@ export const cards: Card[] = [
   {
     id: "javascript",
     name: "JavaScript",
-    category: "Language",
+    category: "Code",
     rarity: "Common",
     description:
       "The universal language of the web. Runs everywhere, sometimes predictably.",
@@ -20,7 +20,7 @@ export const cards: Card[] = [
   {
     id: "react",
     name: "React",
-    category: "Framework",
+    category: "Code",
     rarity: "Rare",
     description:
       "Component-based UI library for building interactive interfaces.",
@@ -28,7 +28,7 @@ export const cards: Card[] = [
   {
     id: "nextjs",
     name: "Next.js",
-    category: "Framework",
+    category: "Code",
     rarity: "Rare",
     description:
       "Full-stack React framework with server-side rendering and routing.",
@@ -36,7 +36,7 @@ export const cards: Card[] = [
   {
     id: "postgres",
     name: "PostgreSQL",
-    category: "Database",
+    category: "Software",
     rarity: "Epic",
     description:
       "Powerful relational database known for reliability and advanced features.",
@@ -44,7 +44,7 @@ export const cards: Card[] = [
   {
     id: "redis",
     name: "Redis",
-    category: "Database",
+    category: "Software",
     rarity: "Rare",
     description:
       "In-memory data store used for caching, queues, and real-time systems.",
@@ -52,7 +52,7 @@ export const cards: Card[] = [
   {
     id: "docker",
     name: "Docker",
-    category: "Tool",
+    category: "Software",
     rarity: "Uncommon",
     description:
       "Containerization platform for packaging applications and dependencies.",
@@ -60,7 +60,7 @@ export const cards: Card[] = [
   {
     id: "git",
     name: "Git",
-    category: "Tool",
+    category: "Code",
     rarity: "Common",
     description:
       "Distributed version control system powering modern software collaboration.",
@@ -68,7 +68,7 @@ export const cards: Card[] = [
   {
     id: "cloudflare",
     name: "Cloudflare",
-    category: "Cloud",
+    category: "Network",
     rarity: "Rare",
     description:
       "Global edge network providing CDN, security, and performance services.",
@@ -76,7 +76,7 @@ export const cards: Card[] = [
   {
     id: "linux",
     name: "Linux",
-    category: "Tool",
+    category: "Software",
     rarity: "Epic",
     description:
       "Open-source operating system kernel powering servers, devices, and infrastructure.",
