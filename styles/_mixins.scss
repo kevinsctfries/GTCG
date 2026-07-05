@@ -1,0 +1,12 @@
+@use "variables" as *;
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin rarity-glow($color) {
+    border-color: $color;
+    box-shadow: 0 0 8px rgba($color, 0.5);
+}
