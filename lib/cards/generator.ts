@@ -1,6 +1,11 @@
 import { cards } from "@/data/cards";
 import { Card, CardRarity } from "@/types/card";
 
+export type PackCard = {
+  instanceId: string;
+  card: Card;
+};
+
 const RARITY_WEIGHTS: Record<CardRarity, number> = {
   Common: 70,
   Uncommon: 20,
@@ -12,7 +17,7 @@ const RARITY_WEIGHTS: Record<CardRarity, number> = {
 function rollRarity(): CardRarity {
   const entries = Object.entries(RARITY_WEIGHTS) as [CardRarity, number][];
 
-  const total = entries.reduce((sum, [, weight]) => sum + weight, 0);
+  const total = entries.reduce((sum, [, w]) => sum + w, 0);
 
   let roll = Math.random() * total;
 
@@ -26,20 +31,22 @@ function rollRarity(): CardRarity {
 
 function getRandomCardByRarity(rarity: CardRarity): Card {
   const pool = cards.filter(c => c.rarity === rarity);
+  const fallback = pool.length ? pool : cards;
 
-  // fallback safety
-  const fallbackPool = pool.length ? pool : cards;
-
-  return fallbackPool[Math.floor(Math.random() * fallbackPool.length)];
+  return fallback[Math.floor(Math.random() * fallback.length)];
 }
 
-export function generatePack(size = 5): Card[] {
-  const pack: Card[] = [];
+export function generatePack(size = 5): PackCard[] {
+  const pack: PackCard[] = [];
 
   for (let i = 0; i < size; i++) {
     const rarity = rollRarity();
     const card = getRandomCardByRarity(rarity);
-    pack.push(card);
+
+    pack.push({
+      instanceId: crypto.randomUUID(),
+      card,
+    });
   }
 
   return pack;
