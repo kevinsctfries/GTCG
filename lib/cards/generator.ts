@@ -1,4 +1,5 @@
 import { cards } from "@/data/cards";
+import { packs } from "@/data/packs";
 import { Card, CardRarity } from "@/types/card";
 
 export type PackCard = {
@@ -36,10 +37,16 @@ function getRandomCardByRarity(rarity: CardRarity): Card {
   return fallback[Math.floor(Math.random() * fallback.length)];
 }
 
-export function generatePack(size = 5): PackCard[] {
+export function generatePack(packId: string): PackCard[] {
+  const packDef = packs.find(p => p.id === packId);
+
+  if (!packDef) {
+    throw new Error(`Pack not found: ${packId}`);
+  }
+
   const pack: PackCard[] = [];
 
-  for (let i = 0; i < size; i++) {
+  for (let i = 0; i < packDef.size; i++) {
     const rarity = rollRarity();
     const card = getRandomCardByRarity(rarity);
 
