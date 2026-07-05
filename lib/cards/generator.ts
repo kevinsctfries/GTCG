@@ -5,6 +5,7 @@ import { Card, CardRarity } from "@/types/card";
 export type PackCard = {
   instanceId: string;
   card: Card;
+  quantity?: number;
 };
 
 const RARITY_WEIGHTS: Record<CardRarity, number> = {

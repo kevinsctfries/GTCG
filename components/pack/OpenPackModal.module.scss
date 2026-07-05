@@ -10,6 +10,8 @@
 
     background: rgba($color-bg, 0.7);
 
+    z-index: 1000;
+
     .modal {
         width: min(900px, 95vw);
         max-height: 90vh;

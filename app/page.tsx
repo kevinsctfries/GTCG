@@ -2,9 +2,12 @@
 
 import { useState } from "react";
 import OpenPackModal from "@/components/pack/OpenPackModal";
+import Collection from "@/components/collection/Collection";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
+
+  const userId = "dev-user";
 
   return (
     <div>
@@ -13,6 +16,10 @@ export default function Home() {
       <button onClick={() => setOpen(true)}>Open Pack</button>
 
       <OpenPackModal open={open} onClose={() => setOpen(false)} />
+
+      <div style={{ marginTop: 32 }}>
+        <Collection userId={userId} />
+      </div>
     </div>
   );
 }
